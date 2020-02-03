@@ -1,2 +1,1 @@
-from .schedulers import CyclicLR
-from .schedulers import OneCycleLR
+from .scheduler import OneCycleLR
