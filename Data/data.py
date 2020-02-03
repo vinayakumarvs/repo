@@ -53,12 +53,12 @@ def get_tf_record_count(file_name):
 
 
 class DataSet(object):
-    data_path: str
+    path: str
 
     def __init__(self):
         gd.mount_google_drive()
         os.listdir('../content/drive/My Drive/datasets/')
-        self.data_path = '../content/drive/My Drive/datasets/'
+        self.path = '../content/drive/My Drive/datasets/'
 
     def create_data_record(self, out_filename, addrs, labels, is_image: bool = False):
         # open the TFRecords file
@@ -100,8 +100,8 @@ class DataSet(object):
         if data_set_name is None:
             return
 
-        train_file_path = self.data_path + data_set_name + '.train.tfrecords'
-        test_file_path = self.data_path + data_set_name + '.test.tfrecords'
+        train_file_path = self.path + data_set_name + '.train.tfrecords'
+        test_file_path = self.path + data_set_name + '.test.tfrecords'
 
         if 'cifar10' in data_set_name:
             if not os.path.exists(train_file_path) or not os.path.exists(test_file_path):
