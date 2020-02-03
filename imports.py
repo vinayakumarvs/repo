@@ -8,4 +8,4 @@ import numpy as np
 import sys
 import math
 from google.colab import drive
-from keras.datasets import cifar10, mnist
+from keras.datasets import cifar10
