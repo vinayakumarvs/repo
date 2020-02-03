@@ -1,7 +1,7 @@
 from ..imports import *
 from ..gdrive import  mount as util_colab
 from ..gdrive import image as util_image
-from .data_augmentation import *
+from .data_aug import *
 
 
 def int64_feature(value) -> tf.train.Feature:
