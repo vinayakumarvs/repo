@@ -1,5 +1,5 @@
 from ..imports import *
-from ..util import image as util_image
+from ..gdrive import image as util_image
 
 def cutout(x: tf.Tensor, h: int, w: int, c: int = 3) -> tf.Tensor:
     """
