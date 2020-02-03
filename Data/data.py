@@ -7,7 +7,7 @@
 from ..imports import *
 from ..GDrive import  gdrive as gd
 from ..GDrive import images as imgs
-from ..aug import *
+from .aug import *
 
 import tensorflow as tf
 import os
