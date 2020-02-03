@@ -1,2 +1,1 @@
-from .models import DavidNet
-from .models import Resnet18
+from .model_arch import DavidNet
