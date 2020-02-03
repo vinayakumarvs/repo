@@ -1,18 +1,8 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 from ..imports import *
-from ..GDrive import  gdrive as gd
-from ..GDrive import images as imgs
-from ..aug import *
+from ..util import  colab as util_colab
+from ..util import image as util_image
+from .data_augmentation import *
 
-import tensorflow as tf
-import os
-import sys
-from keras.datasets import cifar10
 
 def int64_feature(value) -> tf.train.Feature:
     return tf.train.Feature(int64_list=tf.train.Int64List(value=[value]))
@@ -56,7 +46,7 @@ class DataSet(object):
     data_path: str
 
     def __init__(self):
-        gd.mount_google_drive()
+        util_colab.mount_google_drive()
         os.listdir('../content/drive/My Drive/datasets/')
         self.data_path = '../content/drive/My Drive/datasets/'
 
@@ -74,7 +64,7 @@ class DataSet(object):
             if is_image:
                 img = addrs[i]
             else:
-                img = imgs.load_image(addrs[i])
+                img = util_image.load_image(addrs[i])
 
             if img is None:
                 continue
@@ -117,4 +107,3 @@ class DataSet(object):
             raise Exception("The data set {} is not supported.".format(data_set_name))
 
         return train_file_path, test_file_path
-

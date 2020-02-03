@@ -1,14 +1,5 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 from ..imports import *
 
-import tensorflow as tf
-import numpy as np
-import math
 
 def init_pytorch(shape, dtype=tf.float32, partition_info=None):
     fan = np.prod(shape[:-1])
@@ -26,3 +17,20 @@ class ConvBN(tf.keras.Model):
     def call(self, inputs):
         return tf.nn.relu(self.bn(self.drop(self.conv(inputs))))
 
+
+class ResBlk(tf.keras.Model):
+    def __init__(self, c_out, pool, res = False):
+        super().__init__()
+        self.conv_bn = ConvBN(c_out)
+        self.pool = pool
+        self.res = res
+        if self.res:
+            self.res1 = ConvBN(c_out)
+            self.res2 = ConvBN(c_out)
+
+    def call(self, inputs):
+        h = self.pool(self.conv_bn(inputs))
+
+        if self.res:
+            h = h + self.res2(self.res1(h))
+        return h

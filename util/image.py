@@ -1,13 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 from ..imports import *
 
-import cv2
-import tensorflow as tf
+
 def replace_slice(input_: tf.Tensor, replacement, begin) -> tf.Tensor:
     """
     replace slice. Randomly cuts a h by w whole in the image, and fill the whole with given pixels.
@@ -24,16 +17,15 @@ def replace_slice(input_: tf.Tensor, replacement, begin) -> tf.Tensor:
     return tf.where(mask, replacement_pad, input_)
 
 
-def load_image(addr):
+def load_image(address):
     """
     load image. read an image and resize to (32, 32), cv2 load images as BGR, convert it to RGB
     :param address: Input image address
     :return: image.
     """
-    img = cv2.imread(addr)
+    img = cv2.imread(address)
     if img is None:
         return None
     img = cv2.resize(img, (32, 32), interpolation=cv2.INTER_CUBIC)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     return img
-

@@ -1,8 +1,2 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
-from ..scheduler import OneCycleLR
-
+from .schedulers import CyclicLR
+from .schedulers import OneCycleLR

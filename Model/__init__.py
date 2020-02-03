@@ -1,8 +1,2 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
-from ..model_arch import DavidNet
-
+from .models import DavidNet
+from .models import Resnet18
