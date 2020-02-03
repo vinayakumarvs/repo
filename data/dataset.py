@@ -1,6 +1,6 @@
 from ..imports import *
-from ..util import  colab as util_colab
-from ..util import image as util_image
+from ..gdrive import  mount as util_colab
+from ..gdrive import image as util_image
 from .data_augmentation import *
 
 
@@ -96,11 +96,6 @@ class DataSet(object):
         if 'cifar10' in data_set_name:
             if not os.path.exists(train_file_path) or not os.path.exists(test_file_path):
                 (train_features, train_labels), (test_features, test_labels) = cifar10.load_data()
-                self.create_data_record(train_file_path, normalize(train_features), train_labels, True)
-                self.create_data_record(test_file_path, normalize(test_features), test_labels, True)
-        elif 'mnist' in data_set_name:
-            if not os.path.exists(train_file_path) or not os.path.exists(test_file_path):
-                (train_features, train_labels), (test_features, test_labels) = mnist.load_data()
                 self.create_data_record(train_file_path, normalize(train_features), train_labels, True)
                 self.create_data_record(test_file_path, normalize(test_features), test_labels, True)
         else:
