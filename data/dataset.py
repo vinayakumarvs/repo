@@ -1,7 +1,13 @@
 from ..imports import *
+<<<<<<< HEAD:data/dataset.py
 from ..util import  colab as util_colab
 from ..util import image as util_image
 from .data_augmentation import *
+=======
+from ..GDrive import  gdrive as gd
+from ..GDrive import images as imgs
+from .aug import *
+>>>>>>> d423e0f8c75ea9193f7074cf151eb3282f6883e5:Data/data.py
 
 
 def int64_feature(value) -> tf.train.Feature:
@@ -43,12 +49,12 @@ def get_tf_record_count(file_name):
 
 
 class DataSet(object):
-    data_path: str
+    path: str
 
     def __init__(self):
         util_colab.mount_google_drive()
         os.listdir('../content/drive/My Drive/datasets/')
-        self.data_path = '../content/drive/My Drive/datasets/'
+        self.path = '../content/drive/My Drive/datasets/'
 
     def create_data_record(self, out_filename, addrs, labels, is_image: bool = False):
         # open the TFRecords file
@@ -90,8 +96,8 @@ class DataSet(object):
         if data_set_name is None:
             return
 
-        train_file_path = self.data_path + data_set_name + '.train.tfrecords'
-        test_file_path = self.data_path + data_set_name + '.test.tfrecords'
+        train_file_path = self.path + data_set_name + '.train.tfrecords'
+        test_file_path = self.path + data_set_name + '.test.tfrecords'
 
         if 'cifar10' in data_set_name:
             if not os.path.exists(train_file_path) or not os.path.exists(test_file_path):
